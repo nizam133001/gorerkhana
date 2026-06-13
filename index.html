@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GorerKhana — গরের খানা | Taste of Home</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --orange:#F4A228;
+      --orange-dark:#e08f10;
+      --green:#2D6A4F;
+      --green-light:#52B788;
+      --red:#C1440E;
+      --cream:#FFFBF2;
+      --card:#fff;
+      --bg:#FFFBF2;
+      --text:#1a1a1a;
+      --text2:#555;
+      --text3:#999;
+      --border:#f0e8d8;
+      --shadow:0 4px 24px rgba(0,0,0,0.07);
+      --shadow-lg:0 8px 40px rgba(0,0,0,0.12);
+    }
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;}
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar{width:6px;height:6px;}
+    ::-webkit-scrollbar-track{background:#f1f1f1;}
+    ::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px;}
+
+    /* ── BUTTONS ── */
+    .btn{padding:.55rem 1.3rem;border-radius:10px;font-size:.9rem;font-weight:700;cursor:pointer;border:none;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem;}
+    .btn-primary{background:var(--orange);color:#fff;}
+    .btn-primary:hover{background:var(--orange-dark);}
+    .btn-green{background:var(--green);color:#fff;}
+    .btn-green:hover{background:#245a40;}
+    .btn-outline{background:transparent;color:var(--orange);border:2px solid var(--orange);}
+    .btn-outline:hover{background:var(--orange);color:#fff;}
+    .btn-red{background:var(--red);color:#fff;}
+    .btn-sm{padding:.35rem .9rem;font-size:.82rem;}
+    .btn-lg{padding:.85rem 2.2rem;font-size:1rem;}
+
+    /* ── BADGE ── */
+    .badge{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .7rem;border-radius:20px;font-size:.75rem;font-weight:700;}
+    .badge-orange{background:#fff3e0;color:var(--orange);}
+    .badge-green{background:#e8f5e9;color:var(--green);}
+    .badge-red{background:#fce4e4;color:var(--red);}
+    .badge-blue{background:#e3f2fd;color:#1565c0;}
+    .badge-gold{background:#fff8e1;color:#f57f17;}
+
+    /* ── NAV ── */
+    nav{
+      position:sticky;top:0;z-index:200;
+      background:#fff;border-bottom:1px solid var(--border);
+      padding:0 1.5rem;height:66px;
+      display:flex;align-items:center;justify-content:space-between;
+      box-shadow:0 2px 12px rgba(244,162,40,.08);
+    }
+    .logo{font-size:1.45rem;font-weight:900;color:var(--orange);cursor:pointer;display:flex;align-items:center;gap:.4rem;}
+    .logo-bn{font-size:.85rem;color:var(--text3);font-weight:400;}
+    .nav-links{display:flex;align-items:center;gap:1.2rem;}
+    .nav-links a{color:var(--text2);font-size:.9rem;font-weight:500;padding:.3rem .5rem;border-radius:6px;transition:.15s;}
+    .nav-links a:hover{color:var(--orange);background:#fff8ee;}
+    .nav-location{display:flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--text2);cursor:pointer;padding:.4rem .8rem;border:1px solid var(--border);border-radius:8px;}
+    .nav-location:hover{border-color:var(--orange);}
+
+    /* ── PAGES ── */
+    .page{display:none;}
+    .page.active{display:block;}
+
+    /* ══════════════════════════════════
+       HOME PAGE
+    ══════════════════════════════════ */
+
+    /* HERO */
+    .hero{
+      background:linear-gradient(135deg,#1C1006 0%,#3D1F00 40%,#5C2E00 100%);
+      padding:4.5rem 2rem 3rem;position:relative;overflow:hidden;
+    }
+    .hero::before{
+      content:'';position:absolute;inset:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F4A228' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;}
+    .hero-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(244,162,40,.15);border:1px solid rgba(244,162,40,.3);color:var(--orange);padding:.35rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;margin-bottom:1.2rem;}
+    .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;margin-bottom:.6rem;line-height:1.2;}
+    .hero h1 span{color:var(--orange);}
+    .hero-sub{font-size:1.05rem;color:#c9a97a;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;}
+    .hero-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+
+    /* HERO SEARCH */
+    .hero-search{
+      background:#fff;border-radius:14px;padding:.6rem .6rem .6rem 1.2rem;
+      display:flex;align-items:center;gap:.8rem;max-width:580px;margin:0 auto;
+      box-shadow:0 8px 32px rgba(0,0,0,.2);
+    }
+    .hero-search input{flex:1;border:none;outline:none;font-size:.95rem;color:var(--text);background:transparent;}
+    .hero-search select{border:none;outline:none;font-size:.85rem;color:var(--text2);background:transparent;padding:.2rem;}
+
+    /* LIVE COUNTERS */
+    .counters{background:#fff;border-bottom:2px solid var(--border);}
+    .counters-inner{max-width:1100px;margin:0 auto;padding:1.2rem 2rem;display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;}
+    .counter-item{text-align:center;}
+    .counter-num{font-size:1.6rem;font-weight:900;color:var(--orange);}
+    .counter-lbl{font-size:.78rem;color:var(--text3);font-weight:500;}
+
+    /* LOCATION BANNER */
+    .location-banner{background:linear-gradient(90deg,var(--green),#52B788);padding:.8rem 2rem;display:flex;align-items:center;justify-content:center;gap:1rem;color:#fff;font-size:.9rem;}
+    .location-banner strong{font-weight:700;}
+    .location-banner .change-btn{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;padding:.2rem .8rem;border-radius:6px;font-size:.8rem;cursor:pointer;}
+
+    /* CATEGORIES GRID */
+    .cats-section{padding:2rem 2rem 1rem;max-width:1100px;margin:0 auto;}
+    .cats-section h2{font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--text2);}
+    .cats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:.8rem;}
+    .cat-item{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.8rem .5rem;background:#fff;border-radius:12px;cursor:pointer;border:2px solid transparent;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+    .cat-item:hover,.cat-item.active{border-color:var(--orange);background:#fff8ee;}
+    .cat-emoji{font-size:1.8rem;}
+    .cat-name{font-size:.72rem;font-weight:600;color:var(--text2);text-align:center;}
+    .cat-item.active .cat-name{color:var(--orange);}
+
+    /* SECTION */
+    .section{padding:2rem 2rem;max-width:1100px;margin:0 auto;}
+    .sec-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;}
+    .sec-header h2{font-size:1.25rem;font-weight:800;}
+    .sec-header a{font-size:.85rem;color:var(--orange);font-weight:600;}
+
+    /* COOK CARDS */
+    .cook-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.2rem;}
+    .cook-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;}
+    .cook-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+    .cook-card-img{height:130px;display:flex;align-items:center;justify-content:center;font-size:4rem;background:linear-gradient(135deg,#fff3e0,#ffe0b2);position:relative;}
+    .cook-card-badge{position:absolute;top:.6rem;left:.6rem;}
+    .cook-available{position:absolute;top:.6rem;right:.6rem;background:#e8f5e9;color:var(--green);font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:10px;display:flex;align-items:center;gap:.3rem;}
+    .cook-available::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;}
+    .cook-card-body{padding:1rem;}
+    .cook-name{font-size:1rem;font-weight:800;margin-bottom:.15rem;}
+    .cook-location{color:var(--text3);font-size:.78rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.3rem;}
+    .cook-specialty{font-size:.8rem;color:var(--text2);margin-bottom:.6rem;}
+    .cook-meta{display:flex;align-items:center;justify-content:space-between;}
+    .cook-rating{display:flex;align-items:center;gap:.3rem;font-size:.82rem;font-weight:700;color:var(--orange);}
+    .cook-orders{font-size:.78rem;color:var(--text3);}
+    .cook-price{font-size:.82rem;font-weight:700;color:var(--green);}
+
+    /* MEAL CARDS */
+    .meal-scroll{display:flex;gap:1rem;overflow-x:auto;padding-bottom:.5rem;}
+    .meal-scroll::-webkit-scrollbar{height:4px;}
+    .meal-card{background:#fff;border-radius:14px;min-width:175px;max-width:175px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s;flex-shrink:0;}
+    .meal-card:hover{transform:translateY(-3px);}
+    .meal-img{height:110px;display:flex;align-items:center;justify-content:center;font-size:3.2rem;background:linear-gradient(135deg,#fff3e0,#fce4ec);position:relative;}
+    .meal-trending{position:absolute;top:.5rem;left:.5rem;background:var(--red);color:#fff;font-size:.68rem;font-weight:700;padding:.15rem .5rem;border-radius:6px;}
+    .meal-body{padding:.75rem;}
+    .meal-name{font-size:.88rem;font-weight:800;margin-bottom:.15rem;}
+    .meal-cook{font-size:.75rem;color:var(--orange);font-weight:600;margin-bottom:.4rem;}
+    .meal-footer{display:flex;justify-content:space-between;align-items:center;}
+    .meal-price{font-size:.95rem;font-weight:900;color:var(--text);}
+    .meal-add{width:28px;height:28px;border-radius:50%;background:var(--orange);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;}
+    .meal-add:hover{background:var(--orange-dark);}
+
+    /* TIFFIN PASS BANNER */
+    .tiffin-banner{
+      background:linear-gradient(135deg,var(--green),#1B4332);
+      border-radius:16px;padding:1.5rem 2rem;color:#fff;
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+      margin:0 2rem;max-width:1100px;
+    }
+    .tiffin-banner h3{font-size:1.3rem;font-weight:800;margin-bottom:.3rem;}
+    .tiffin-banner p{font-size:.9rem;opacity:.85;}
+    .tiffin-price{text-align:right;}
+    .tiffin-price .old{font-size:.85rem;opacity:.6;text-decoration:line-through;}
+    .tiffin-price .new{font-size:1.8rem;font-weight:900;}
+    .tiffin-price .per{font-size:.8rem;opacity:.7;}
+
+    /* WHY SECTION */
+    .why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
+    .why-card{background:#fff;border-radius:14px;padding:1.5rem;box-shadow:var(--shadow);text-align:center;border-top:3px solid var(--orange);}
+    .why-icon{font-size:2.2rem;margin-bottom:.6rem;}
+    .why-card h4{font-weight:800;font-size:.95rem;margin-bottom:.3rem;}
+    .why-card p{font-size:.8rem;color:var(--text3);}
+
+    /* DONATE STRIP */
+    .donate-strip{background:linear-gradient(90deg,#1C1006,#3D1F00);padding:2rem;text-align:center;color:#fff;margin:2rem 0;}
+    .donate-strip h2{font-size:1.6rem;font-weight:900;margin-bottom:.5rem;}
+    .donate-strip p{color:#c9a97a;margin-bottom:1.2rem;}
+    .donate-strip-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+    /* ══════════════════════════════════
+       COOK PROFILE
+    ══════════════════════════════════ */
+    .profile-hero{background:linear-gradient(135deg,#1C1006,#5C2E00);padding:2rem;color:#fff;}
+    .profile-top{display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap;max-width:900px;margin:0 auto;}
+    .profile-ava{font-size:5rem;background:rgba(255,255,255,.1);border-radius:16px;width:110px;height:110px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:3px solid rgba(244,162,40,.4);}
+    .profile-info{flex:1;}
+    .profile-info h2{font-size:1.8rem;font-weight:900;margin-bottom:.3rem;}
+    .profile-info .loc{color:#c9a97a;font-size:.9rem;margin-bottom:.4rem;}
+    .profile-info .spec{color:var(--orange);font-size:.9rem;margin-bottom:.8rem;}
+    .profile-badges{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+    .profile-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+    .pstat .n{font-size:1.6rem;font-weight:900;color:var(--orange);}
+    .pstat .l{font-size:.75rem;color:#999;}
+    .kitchen-photos{display:flex;gap:.8rem;margin-top:1rem;overflow-x:auto;}
+    .kitchen-photo{width:80px;height:70px;border-radius:10px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;border:2px solid rgba(255,255,255,.1);}
+    .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;}
+    .menu-item{background:#fff;border-radius:12px;padding:1.1rem;box-shadow:var(--shadow);display:flex;gap:1rem;align-items:center;}
+    .menu-emoji{font-size:2.8rem;flex-shrink:0;}
+    .menu-info{flex:1;}
+    .menu-name{font-weight:800;font-size:.95rem;}
+    .menu-desc{font-size:.78rem;color:var(--text3);margin-bottom:.3rem;}
+    .menu-tags{display:flex;gap:.3rem;flex-wrap:wrap;}
+    .menu-right{text-align:right;flex-shrink:0;}
+    .menu-price{font-size:1.1rem;font-weight:900;color:var(--orange);display:block;margin-bottom:.4rem;}
+    .review-card{background:#fff;border-radius:12px;padding:1.1rem;box-shadow:var(--shadow);margin-bottom:.8rem;}
+    .review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;}
+    .reviewer{display:flex;align-items:center;gap:.6rem;}
+    .reviewer-ava{width:36px;height:36px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;}
+    .reviewer-name{font-weight:700;font-size:.9rem;}
+    .reviewer-date{font-size:.75rem;color:var(--text3);}
+    .stars{color:var(--orange);font-size:.85rem;}
+    .review-text{font-size:.88rem;color:var(--text2);}
+    .review-photo{margin-top:.6rem;display:flex;gap:.5rem;}
+    .review-photo span{background:var(--bg);border-radius:8px;padding:.5rem 1rem;font-size:1.2rem;}
+
+    /* ══════════════════════════════════
+       CHECKOUT
+    ══════════════════════════════════ */
+    .checkout-layout{display:grid;grid-template-columns:1fr 380px;gap:2rem;max-width:950px;margin:0 auto;padding:2rem;}
+    .form-section{background:#fff;border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1rem;}
+    .form-section h3{font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+    .form-group{margin-bottom:1rem;}
+    .form-group label{display:block;font-size:.82rem;font-weight:700;color:var(--text2);margin-bottom:.35rem;}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:.65rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;outline:none;transition:.2s;background:#fff;}
+    .form-group input:focus,.form-group select:focus{border-color:var(--orange);}
+    .payment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;}
+    .pay-opt{padding:.8rem;border:2px solid var(--border);border-radius:10px;text-align:center;cursor:pointer;transition:.2s;}
+    .pay-opt:hover,.pay-opt.sel{border-color:var(--orange);background:#fff8ee;}
+    .pay-opt .pay-icon{font-size:1.5rem;display:block;margin-bottom:.2rem;}
+    .pay-opt .pay-name{font-size:.78rem;font-weight:700;}
+    .donate-toggle{background:linear-gradient(90deg,#e8f5e9,#f1f8f4);border:1.5px solid var(--green-light);border-radius:12px;padding:1rem;display:flex;align-items:center;gap:1rem;cursor:pointer;margin-bottom:1rem;}
+    .donate-toggle input{width:20px;height:20px;accent-color:var(--green);cursor:pointer;}
+    .donate-toggle-text h4{font-size:.9rem;font-weight:700;color:var(--green);}
+    .donate-toggle-text p{font-size:.78rem;color:var(--text3);}
+    .order-summary-box{background:#fff;border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);position:sticky;top:80px;}
+    .order-summary-box h3{font-size:1rem;font-weight:800;margin-bottom:1rem;}
+    .summary-item{display:flex;justify-content:space-between;padding:.5rem 0;font-size:.88rem;border-bottom:1px solid var(--border);}
+    .summary-row{display:flex;justify-content:space-between;padding:.4rem 0;font-size:.85rem;color:var(--text2);}
+    .summary-total{display:flex;justify-content:space-between;padding:.8rem 0 0;font-size:1rem;font-weight:800;}
+
+    /* ══════════════════════════════════
+       TRACKING / SUCCESS
+    ══════════════════════════════════ */
+    .success-wrap{max-width:520px;margin:0 auto;padding:3rem 2rem;text-align:center;}
+    .success-icon{font-size:5rem;margin-bottom:1rem;}
+    .success-wrap h2{font-size:2rem;font-weight:900;color:var(--green);margin-bottom:.5rem;}
+    .success-wrap p{color:var(--text3);margin-bottom:2rem;}
+    .track-box{background:#fff;border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);text-align:left;margin-bottom:2rem;}
+    .track-step{display:flex;gap:1rem;margin-bottom:1.2rem;position:relative;}
+    .track-step:not(:last-child)::after{content:'';position:absolute;left:17px;top:38px;bottom:-10px;width:2px;background:var(--border);}
+    .track-ico{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+    .track-active{background:var(--green);color:#fff;}
+    .track-pending{background:var(--border);color:var(--text3);}
+    .track-txt h4{font-weight:800;font-size:.9rem;}
+    .track-txt p{font-size:.78rem;color:var(--text3);}
+
+    /* ══════════════════════════════════
+       DONATE PAGE
+    ══════════════════════════════════ */
+    .donate-hero{background:linear-gradient(135deg,var(--green),#1B4332);padding:3.5rem 2rem;text-align:center;color:#fff;}
+    .donate-hero h1{font-size:2.5rem;font-weight:900;margin-bottom:.5rem;}
+    .donate-hero p{opacity:.85;font-size:1.05rem;max-width:500px;margin:0 auto;}
+    .impact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;max-width:700px;margin:1.5rem auto 0;}
+    .impact-stat{background:rgba(255,255,255,.15);border-radius:12px;padding:1rem;text-align:center;}
+    .impact-stat .n{font-size:1.8rem;font-weight:900;}
+    .impact-stat .l{font-size:.78rem;opacity:.8;}
+    .donate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem;}
+    .donate-card{background:#fff;border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);border-left:4px solid var(--green);}
+    .donate-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem;}
+    .donate-card h3{font-weight:800;font-size:1rem;}
+    .donate-card .loc{color:var(--text3);font-size:.8rem;margin:.2rem 0 .6rem;}
+    .donate-card .need{background:#e8f5e9;color:var(--green);padding:.25rem .7rem;border-radius:8px;font-size:.78rem;font-weight:700;display:inline-block;margin-bottom:.8rem;}
+    .donate-card .kids{font-size:.85rem;color:var(--text2);margin-bottom:1rem;}
+    .donate-progress{background:var(--border);border-radius:4px;height:6px;margin-bottom:.4rem;overflow:hidden;}
+    .donate-progress-fill{background:var(--green);height:100%;border-radius:4px;}
+    .donate-progress-lbl{font-size:.75rem;color:var(--text3);margin-bottom:.8rem;}
+
+    /* ══════════════════════════════════
+       COOK REGISTER
+    ══════════════════════════════════ */
+    .register-hero{background:linear-gradient(135deg,var(--orange),var(--red));padding:3.5rem 2rem;text-align:center;color:#fff;}
+    .register-hero h1{font-size:2.5rem;font-weight:900;margin-bottom:.5rem;}
+    .earnings-bar{background:#fff;border-radius:14px;padding:1.5rem;max-width:600px;margin:1.5rem auto 0;color:var(--text);}
+    .earnings-bar h4{font-size:1rem;font-weight:800;margin-bottom:.8rem;}
+    .earn-levels{display:flex;gap:1rem;flex-wrap:wrap;}
+    .earn-level{flex:1;min-width:120px;background:var(--bg);border-radius:10px;padding:.8rem;text-align:center;}
+    .earn-level .meals{font-size:.78rem;color:var(--text3);}
+    .earn-level .amount{font-size:1.1rem;font-weight:900;color:var(--green);}
+    .earn-level .lbl{font-size:.72rem;color:var(--text3);}
+    .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem;}
+    .step-card{background:#fff;border-radius:14px;padding:1.5rem;box-shadow:var(--shadow);text-align:center;}
+    .step-num{width:40px;height:40px;background:var(--orange);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;margin:0 auto .8rem;}
+    .step-card h4{font-weight:800;font-size:.95rem;margin-bottom:.3rem;}
+    .step-card p{font-size:.8rem;color:var(--text3);}
+
+    /* ══════════════════════════════════
+       CART
+    ══════════════════════════════════ */
+    .cart-fab{
+      position:fixed;bottom:2rem;right:2rem;
+      background:var(--orange);color:#fff;width:58px;height:58px;
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      font-size:1.4rem;cursor:pointer;z-index:300;
+      box-shadow:0 4px 20px rgba(244,162,40,.45);transition:.2s;
+    }
+    .cart-fab:hover{transform:scale(1.08);}
+    .cart-fab-count{position:absolute;top:-4px;right:-4px;background:var(--green);color:#fff;border-radius:50%;width:22px;height:22px;font-size:.72rem;font-weight:900;display:flex;align-items:center;justify-content:center;border:2px solid #fff;}
+    .cart-drawer{
+      position:fixed;right:0;top:66px;bottom:0;width:360px;background:#fff;z-index:250;
+      transform:translateX(110%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+      box-shadow:-4px 0 30px rgba(0,0,0,.1);display:flex;flex-direction:column;
+    }
+    .cart-drawer.open{transform:translateX(0);}
+    .cart-head{padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+    .cart-head h3{font-size:1rem;font-weight:800;}
+    .cart-close{background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--text3);padding:.2rem;}
+    .cart-body{flex:1;overflow-y:auto;padding:1rem 1.5rem;}
+    .cart-empty{text-align:center;padding:3rem 1rem;color:var(--text3);}
+    .cart-empty-ico{font-size:3rem;margin-bottom:.5rem;}
+    .cart-item-row{display:flex;gap:.8rem;align-items:center;padding:.8rem 0;border-bottom:1px solid var(--border);}
+    .ci-emoji{font-size:2rem;flex-shrink:0;}
+    .ci-info{flex:1;}
+    .ci-name{font-weight:700;font-size:.9rem;}
+    .ci-cook{font-size:.75rem;color:var(--text3);}
+    .ci-right{text-align:right;flex-shrink:0;}
+    .ci-price{font-weight:800;font-size:.9rem;color:var(--orange);}
+    .qty-ctrl{display:flex;align-items:center;gap:.4rem;margin-top:.3rem;}
+    .qty-btn{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;transition:.15s;}
+    .qty-btn:hover{border-color:var(--orange);color:var(--orange);}
+    .qty-num{font-size:.85rem;font-weight:700;min-width:18px;text-align:center;}
+    .cart-foot{padding:1.2rem 1.5rem;border-top:1px solid var(--border);}
+    .cart-foot-rows{margin-bottom:1rem;}
+    .cart-foot-row{display:flex;justify-content:space-between;font-size:.85rem;color:var(--text2);padding:.2rem 0;}
+    .cart-foot-total{display:flex;justify-content:space-between;font-size:1rem;font-weight:900;padding:.6rem 0 0;border-top:1px solid var(--border);}
+    .cart-foot .btn{width:100%;justify-content:center;padding:.85rem;font-size:.95rem;margin-top:.8rem;border-radius:12px;}
+
+    /* ══════════════════════════════════
+       TOAST
+    ══════════════════════════════════ */
+    .toast{
+      position:fixed;bottom:5rem;left:50%;transform:translateX(-50%) translateY(20px);
+      background:#1a1a1a;color:#fff;padding:.7rem 1.4rem;border-radius:10px;
+      font-size:.88rem;z-index:400;opacity:0;pointer-events:none;transition:all .3s;
+      display:flex;align-items:center;gap:.5rem;white-space:nowrap;
+    }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    footer{background:#1C1006;color:#c9a97a;padding:2.5rem 2rem 1.5rem;margin-top:3rem;}
+    .footer-inner{max-width:1100px;margin:0 auto;}
+    .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem;}
+    .footer-brand .logo{margin-bottom:.5rem;}
+    .footer-brand p{font-size:.82rem;opacity:.7;line-height:1.6;}
+    .footer-col h4{font-size:.88rem;font-weight:800;color:#fff;margin-bottom:.8rem;}
+    .footer-col a{display:block;font-size:.82rem;margin-bottom:.4rem;opacity:.7;transition:.15s;}
+    .footer-col a:hover{opacity:1;color:var(--orange);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.78rem;opacity:.6;}
+    .payment-logos{display:flex;gap:.6rem;align-items:center;}
+    .pay-logo{background:rgba(255,255,255,.1);border-radius:6px;padding:.3rem .7rem;font-size:.75rem;font-weight:700;}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px){
+      .nav-links .hide-mobile{display:none;}
+      .checkout-layout{grid-template-columns:1fr;}
+      .footer-top{grid-template-columns:1fr 1fr;}
+      .cart-drawer{width:100%;}
+      .tiffin-banner{margin:0 1rem;}
+    }
+    @media(max-width:480px){
+      .footer-top{grid-template-columns:1fr;}
+      .hero{padding:3rem 1.2rem 2.5rem;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="logo" onclick="showPage('home')">
+    🍲 GorerKhana
+    <span class="logo-bn">গরের খানা</span>
+  </div>
+  <div class="nav-links">
+    <div class="nav-location hide-mobile" onclick="showToast('📍 Location: Dhanmondi, Dhaka')">
+      📍 Dhanmondi, Dhaka ▾
+    </div>
+    <a href="#" class="hide-mobile" onclick="showPage('donate');return false;">🤲 Donate</a>
+    <a href="#" class="hide-mobile" onclick="showPage('cook-register');return false;">Earn as Cook</a>
+    <button class="btn btn-outline btn-sm hide-mobile">Login</button>
+    <button class="btn btn-primary btn-sm" onclick="showPage('home')">Order Now</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════
+     PAGE: HOME
+════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-pill">🇧🇩 Bangladesh's #1 Home Food Platform</div>
+      <h1>মায়ের হাতের রান্না<br><span>Doorstep-এ পৌঁছে দিই</span></h1>
+      <p class="hero-sub">Order authentic home-cooked meals from verified home cooks near you. Real food. Real homes. Real taste.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary btn-lg" onclick="document.getElementById('cats-anchor').scrollIntoView({behavior:'smooth'})">🍽️ Order Food</button>
+        <button class="btn btn-outline btn-lg" onclick="showPage('cook-register')">👩‍🍳 Become a Cook</button>
+        <button class="btn btn-green btn-lg" onclick="showPage('donate')">🤲 Donate Food</button>
+      </div>
+      <div class="hero-search">
+        <span>🔍</span>
+        <input type="text" placeholder="Search dal bhat, khichuri, biryani, tiffin…" id="searchInput" oninput="filterMeals()"/>
+        <select onchange="filterMeals()">
+          <option>Dhaka</option><option>Chittagong</option><option>Sylhet</option>
+        </select>
+        <button class="btn btn-primary btn-sm">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Counters -->
+  <div class="counters">
+    <div class="counters-inner">
+      <div class="counter-item"><div class="counter-num" id="cnt-meals">14,823</div><div class="counter-lbl">Meals Served</div></div>
+      <div class="counter-item"><div class="counter-num">1,240+</div><div class="counter-lbl">Verified Home Cooks</div></div>
+      <div class="counter-item"><div class="counter-num">18,500+</div><div class="counter-lbl">Happy Customers</div></div>
+      <div class="counter-item"><div class="counter-num">892</div><div class="counter-lbl">Meals Donated</div></div>
+      <div class="counter-item"><div class="counter-num">4.9 ⭐</div><div class="counter-lbl">Average Rating</div></div>
+    </div>
+  </div>
+
+  <!-- Location Banner -->
+  <div class="location-banner">
+    📍 Showing cooks near <strong>Dhanmondi, Dhaka</strong>
+    <button class="change-btn" onclick="showToast('📍 Change location coming soon')">Change</button>
+  </div>
+
+  <!-- Category Grid -->
+  <div class="cats-section" id="cats-anchor">
+    <h2>What are you craving? 🤤</h2>
+    <div class="cats-grid" id="cats-grid">
+      <div class="cat-item active" onclick="filterCat('all',this)"><div class="cat-emoji">🍽️</div><div class="cat-name">সব খাবার</div></div>
+      <div class="cat-item" onclick="filterCat('rice',this)"><div class="cat-emoji">🍚</div><div class="cat-name">ভাত-তরকারি</div></div>
+      <div class="cat-item" onclick="filterCat('biryani',this)"><div class="cat-emoji">🫕</div><div class="cat-name">বিরিয়ানি</div></div>
+      <div class="cat-item" onclick="filterCat('fish',this)"><div class="cat-emoji">🐟</div><div class="cat-name">মাছ</div></div>
+      <div class="cat-item" onclick="filterCat('tiffin',this)"><div class="cat-emoji">🥪</div><div class="cat-name">টিফিন</div></div>
+      <div class="cat-item" onclick="filterCat('khichuri',this)"><div class="cat-emoji">🥘</div><div class="cat-name">খিচুড়ি</div></div>
+      <div class="cat-item" onclick="filterCat('veg',this)"><div class="cat-emoji">🥗</div><div class="cat-name">সবজি</div></div>
+      <div class="cat-item" onclick="filterCat('sweets',this)"><div class="cat-emoji">🍮</div><div class="cat-name">মিষ্টি</div></div>
+      <div class="cat-item" onclick="filterCat('soup',this)"><div class="cat-emoji">🍲</div><div class="cat-name">স্যুপ</div></div>
+      <div class="cat-item" onclick="filterCat('snacks',this)"><div class="cat-emoji">🥟</div><div class="cat-name">নাস্তা</div></div>
+      <div class="cat-item" onclick="filterCat('chicken',this)"><div class="cat-emoji">🍗</div><div class="cat-name">মুরগি</div></div>
+      <div class="cat-item" onclick="filterCat('beef',this)"><div class="cat-emoji">🥩</div><div class="cat-name">গরুর মাংস</div></div>
+    </div>
+  </div>
+
+  <!-- Top Cooks -->
+  <div class="section">
+    <div class="sec-header">
+      <h2>⭐ Top Verified Home Cooks Near You</h2>
+      <a href="#">See all 1,240+ cooks →</a>
+    </div>
+    <div class="cook-grid" id="cook-grid"></div>
+  </div>
+
+  <!-- Tiffin Pass Banner -->
+  <div class="tiffin-banner" style="margin:0 auto 0;max-width:1100px;">
+    <div>
+      <h3>🥡 Weekly Tiffin Pass</h3>
+      <p>Get fresh home-cooked lunch delivered every weekday to your office. Cancel anytime.</p>
+      <div style="display:flex;gap:.6rem;margin-top:.8rem;flex-wrap:wrap;">
+        <span style="background:rgba(255,255,255,.15);padding:.2rem .7rem;border-radius:6px;font-size:.78rem;">✅ Mon–Fri delivery</span>
+        <span style="background:rgba(255,255,255,.15);padding:.2rem .7rem;border-radius:6px;font-size:.78rem;">✅ Cancel anytime</span>
+        <span style="background:rgba(255,255,255,.15);padding:.2rem .7rem;border-radius:6px;font-size:.78rem;">✅ Save 20%</span>
+      </div>
+    </div>
+    <div class="tiffin-price">
+      <div class="old">Tk 500/week</div>
+      <div class="new">Tk 400</div>
+      <div class="per">per week (5 meals)</div>
+      <button class="btn btn-primary" style="margin-top:.8rem;" onclick="showToast('🥡 Tiffin Pass subscription coming soon!')">Subscribe Now</button>
+    </div>
+  </div>
+
+  <!-- Today's Meals -->
+  <div class="section">
+    <div class="sec-header">
+      <h2>🔥 Trending Meals Today</h2>
+      <a href="#">See all →</a>
+    </div>
+    <div class="meal-scroll" id="meal-grid"></div>
+  </div>
+
+  <!-- Why GorerKhana -->
+  <div style="background:#fff;padding:3rem 2rem;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <h2 style="font-size:1.6rem;font-weight:900;text-align:center;margin-bottom:.5rem;">Why GorerKhana? 💚</h2>
+      <p style="text-align:center;color:var(--text3);margin-bottom:2rem;">Real food from real homes — not factories</p>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-icon">👩‍🍳</div><h4>Verified Home Cooks</h4><p>NID verified, kitchen-checked, community rated</p></div>
+        <div class="why-card" style="border-top-color:var(--green);"><div class="why-icon">💰</div><h4>Half the Price</h4><p>Meals from Tk 60 — save 50% vs restaurants</p></div>
+        <div class="why-card" style="border-top-color:var(--red);"><div class="why-icon">🚴</div><h4>30–60 Min Delivery</h4><p>Hot fresh food to your office or home</p></div>
+        <div class="why-card" style="border-top-color:var(--orange);"><div class="why-icon">🤲</div><h4>Every Order Gives Back</h4><p>1% of every order goes to orphanages</p></div>
+        <div class="why-card" style="border-top-color:var(--green);"><div class="why-icon">📱</div><h4>bKash & Nagad</h4><p>Pay with bKash, Nagad, Rocket or cash</p></div>
+        <div class="why-card"><div class="why-icon">🕐</div><h4>Schedule Ahead</h4><p>Order tonight, delivered at 12:30 PM tomorrow</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Donate Strip -->
+  <div class="donate-strip">
+    <h2>🤲 Feed Those Who Need It Most</h2>
+    <p>Every meal you donate goes directly to orphanages and madrasas in Dhaka. Your Tk 60 feeds a child today.</p>
+    <div class="donate-strip-btns">
+      <button class="btn btn-primary btn-lg" onclick="showPage('donate')">Donate a Meal</button>
+      <button class="btn btn-outline btn-lg" onclick="showPage('donate')" style="border-color:var(--orange);color:var(--orange);">Register Your Madrasa</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: COOK PROFILE
+════════════════════════════════════════ -->
+<div id="page-profile" class="page">
+  <div class="profile-hero">
+    <div class="profile-top">
+      <div class="profile-ava" id="p-ava">👩‍🍳</div>
+      <div class="profile-info">
+        <h2 id="p-name">—</h2>
+        <div class="loc" id="p-loc">—</div>
+        <div class="spec" id="p-spec">—</div>
+        <div class="profile-badges" id="p-badges"></div>
+        <div class="profile-stats">
+          <div class="pstat"><div class="n" id="p-orders">0</div><div class="l">Orders</div></div>
+          <div class="pstat"><div class="n" id="p-rating">0</div><div class="l">Rating</div></div>
+          <div class="pstat"><div class="n" id="p-donated">0</div><div class="l">Meals Donated</div></div>
+          <div class="pstat"><div class="n">2+</div><div class="l">Years Cooking</div></div>
+        </div>
+        <div class="kitchen-photos" style="margin-top:1rem;">
+          <div class="kitchen-photo">🍳</div>
+          <div class="kitchen-photo">🥘</div>
+          <div class="kitchen-photo">🥗</div>
+          <div class="kitchen-photo" style="font-size:1rem;color:#aaa;font-size:.7rem;text-align:center;padding:.3rem;">+2 photos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-header"><h2>📋 Today's Menu</h2><span id="p-avail" class="badge badge-green">✅ Accepting Orders</span></div>
+    <div class="menu-grid" id="p-menu"></div>
+  </div>
+  <div class="section" style="padding-top:0;">
+    <div class="sec-header"><h2>💬 Customer Reviews</h2></div>
+    <div id="p-reviews"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: CHECKOUT
+════════════════════════════════════════ -->
+<div id="page-order" class="page">
+  <div style="background:linear-gradient(135deg,#1C1006,#5C2E00);padding:2rem;color:#fff;text-align:center;">
+    <h1 style="font-size:2rem;font-weight:900;">🛒 Checkout</h1>
+    <p style="opacity:.7;">Almost there! Your food is waiting.</p>
+  </div>
+  <div class="checkout-layout">
+    <div>
+      <div class="form-section">
+        <h3>📍 Delivery Details</h3>
+        <div class="form-group"><label>Full Name</label><input type="text" placeholder="e.g. Rahim Uddin" id="o-name"/></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="e.g. 01712-345678" id="o-phone"/></div>
+        <div class="form-group"><label>Delivery Address</label><input type="text" placeholder="House no, Road, Area, Dhaka" id="o-addr"/></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+          <div class="form-group"><label>Delivery Time</label>
+            <select id="o-time">
+              <option>ASAP (30–60 min)</option>
+              <option>Lunch: 12:00–2:00 PM</option>
+              <option>Dinner: 7:00–9:00 PM</option>
+              <option>Schedule for tomorrow</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Area / Thana</label>
+            <select><option>Dhanmondi</option><option>Gulshan</option><option>Motijheel</option><option>Mirpur</option><option>Uttara</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Special Instructions (optional)</label><textarea rows="2" placeholder="Less spicy, extra rice, no onion…"></textarea></div>
+      </div>
+
+      <div class="form-section">
+        <h3>💳 Payment Method</h3>
+        <div class="payment-grid">
+          <div class="pay-opt sel" onclick="selPay(this)"><span class="pay-icon">💚</span><div class="pay-name">bKash</div></div>
+          <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">🧡</span><div class="pay-name">Nagad</div></div>
+          <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">🟣</span><div class="pay-name">Rocket</div></div>
+          <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">💳</span><div class="pay-name">Card</div></div>
+          <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">💵</span><div class="pay-name">Cash</div></div>
+          <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">⏳</span><div class="pay-name">Pay Later</div></div>
+        </div>
+      </div>
+
+      <!-- +1 Meal Donation -->
+      <label class="donate-toggle">
+        <input type="checkbox" id="donate-check"/>
+        <div class="donate-toggle-text">
+          <h4>🤲 Add a Donated Meal — Tk 60</h4>
+          <p>Your extra Tk 60 feeds a child at a local orphanage today. JazakAllah Khair 💚</p>
+        </div>
+      </label>
+    </div>
+
+    <div>
+      <div class="order-summary-box">
+        <h3>🧾 Order Summary</h3>
+        <div id="o-items"></div>
+        <div id="o-totals" style="margin-top:.8rem;padding-top:.5rem;border-top:1px solid var(--border);"></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:1rem;font-size:1rem;margin-top:1rem;border-radius:12px;" onclick="placeOrder()">
+          ✅ Place Order
+        </button>
+        <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.8rem;flex-wrap:wrap;">
+          <span class="badge badge-green">🔒 Secure Payment</span>
+          <span class="badge badge-blue">📦 Tracked Delivery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: SUCCESS
+════════════════════════════════════════ -->
+<div id="page-success" class="page">
+  <div class="success-wrap">
+    <div class="success-icon">🎉</div>
+    <h2>Order Confirmed!</h2>
+    <p>Your food is being prepared with love. Estimated arrival: <strong>40–55 minutes</strong></p>
+    <div class="track-box">
+      <h4 style="margin-bottom:1.2rem;font-size:1rem;">📍 Live Tracking</h4>
+      <div class="track-step">
+        <div class="track-ico track-active">✅</div>
+        <div class="track-txt"><h4>Order Confirmed</h4><p>Received by cook</p></div>
+      </div>
+      <div class="track-step">
+        <div class="track-ico track-active">👩‍🍳</div>
+        <div class="track-txt"><h4>Preparing Your Food</h4><p>Cook is cooking with care</p></div>
+      </div>
+      <div class="track-step">
+        <div class="track-ico track-pending">🚴</div>
+        <div class="track-txt"><h4>Out for Delivery</h4><p>Rider on the way</p></div>
+      </div>
+      <div class="track-step">
+        <div class="track-ico track-pending">🏠</div>
+        <div class="track-txt"><h4>Delivered</h4><p>Enjoy your meal! Bon appétit 🍽️</p></div>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-lg" onclick="showPage('home')">Back to Home</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: DONATE
+════════════════════════════════════════ -->
+<div id="page-donate" class="page">
+  <div class="donate-hero">
+    <h1>🤲 Khana Dao — খানা দাও</h1>
+    <p>Share your food with those who need it most. Every meal you donate changes a life in Bangladesh.</p>
+    <div class="impact-grid">
+      <div class="impact-stat"><div class="n">892</div><div class="l">Meals Donated</div></div>
+      <div class="impact-stat"><div class="n">50+</div><div class="l">Orphanages</div></div>
+      <div class="impact-stat"><div class="n">2,400+</div><div class="l">Children Fed</div></div>
+      <div class="impact-stat"><div class="n">Tk 60</div><div class="l">Per Donated Meal</div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:1rem;padding:1.5rem 2rem;justify-content:center;flex-wrap:wrap;">
+    <button class="btn btn-primary btn-lg" onclick="toggleDonateForm()">🍱 I Want to Donate Food</button>
+    <button class="btn btn-green btn-lg" onclick="showToast('📋 Register your organization — coming soon!')">🏫 Register Organization</button>
+  </div>
+
+  <div id="donate-form-wrap" style="display:none;max-width:520px;margin:0 auto;padding:0 2rem 2rem;">
+    <div class="form-section">
+      <h3 style="color:var(--green);">🤲 Food Donation Form</h3>
+      <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name"/></div>
+      <div class="form-group"><label>Phone</label><input type="tel" placeholder="01712-XXXXXX"/></div>
+      <div class="form-group"><label>What food are you donating?</label><input type="text" placeholder="e.g. 20 plates of biryani, 30 tiffin boxes"/></div>
+      <div class="form-group"><label>Quantity (serves how many people?)</label><input type="number" placeholder="e.g. 20"/></div>
+      <div class="form-group"><label>Send to</label>
+        <select><option>Al-Amin Madrasa, Dhanmondi</option><option>Salam Orphanage, Mirpur</option><option>Noor Yatimkhana, Mohammadpur</option><option>Any — GorerKhana will assign</option></select>
+      </div>
+      <div class="form-group"><label>Logistics</label>
+        <select><option>They pick up from my home</option><option>I will deliver myself</option><option>GorerKhana rider (Tk 50)</option></select>
+      </div>
+      <button class="btn btn-green" style="width:100%;justify-content:center;padding:.9rem;font-size:.95rem;border-radius:12px;" onclick="showToast('🤲 Donation submitted! JazakAllah Khair 💚')">Submit Donation</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header"><h2>🏫 Organizations Needing Food Today</h2></div>
+    <div class="donate-grid" id="donate-grid"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: BECOME A COOK
+════════════════════════════════════════ -->
+<div id="page-cook-register" class="page">
+  <div class="register-hero">
+    <h1>👩‍🍳 রান্না করুন, আয় করুন</h1>
+    <p>Turn your cooking skills into real income. Join 1,200+ home cooks earning on GorerKhana.</p>
+    <div class="earnings-bar">
+      <h4>💰 How Much Can You Earn?</h4>
+      <div class="earn-levels">
+        <div class="earn-level"><div class="meals">5–10 meals/day</div><div class="amount">Tk 8,000</div><div class="lbl">per month</div></div>
+        <div class="earn-level"><div class="meals">10–20 meals/day</div><div class="amount">Tk 18,000</div><div class="lbl">per month</div></div>
+        <div class="earn-level"><div class="meals">20+ meals/day</div><div class="amount">Tk 35,000+</div><div class="lbl">per month</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 style="text-align:center;margin-bottom:1.5rem;">How It Works</h2>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">1</div><h4>Register</h4><p>Submit your NID and 3 kitchen photos for verification</p></div>
+      <div class="step-card"><div class="step-num">2</div><h4>List Your Menu</h4><p>Add today's dishes, prices and portions — takes 2 minutes</p></div>
+      <div class="step-card"><div class="step-num">3</div><h4>Receive Orders</h4><p>Accept orders with one tap. Cook and pack the food.</p></div>
+      <div class="step-card"><div class="step-num">4</div><h4>Get Paid</h4><p>Rider picks up. Money sent to bKash same day.</p></div>
+    </div>
+
+    <!-- Cook Tiers -->
+    <h2 style="text-align:center;margin-bottom:1.5rem;">Cook Badge Levels 🏅</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2.5rem;">
+      <div style="background:#fff;border-radius:14px;padding:1.5rem;box-shadow:var(--shadow);text-align:center;border-top:3px solid #aaa;">
+        <div style="font-size:2rem;margin-bottom:.5rem;">🥉</div>
+        <h4 style="font-weight:800;">Registered Cook</h4>
+        <p style="font-size:.8rem;color:var(--text3);">ID verified. First orders unlocked.</p>
+        <div class="badge badge-blue" style="margin-top:.6rem;">0–50 orders</div>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:1.5rem;box-shadow:var(--shadow);text-align:center;border-top:3px solid var(--orange);">
+        <div style="font-size:2rem;margin-bottom:.5rem;">🥈</div>
+        <h4 style="font-weight:800;">Trusted Cook</h4>
+        <p style="font-size:.8rem;color:var(--text3);">Boosted ranking. Priority in search.</p>
+        <div class="badge badge-orange" style="margin-top:.6rem;">50–500 orders</div>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:1.5rem;box-shadow:var(--shadow);text-align:center;border-top:3px solid var(--orange-dark);">
+        <div style="font-size:2rem;margin-bottom:.5rem;">🥇</div>
+        <h4 style="font-weight:800;">Master Cook</h4>
+        <p style="font-size:.8rem;color:var(--text3);">Featured on homepage. Top earnings.</p>
+        <div class="badge badge-gold" style="margin-top:.6rem;">500+ orders & 4.8★</div>
+      </div>
+    </div>
+
+    <div style="max-width:560px;margin:0 auto;">
+      <div class="form-section">
+        <h3 style="color:var(--orange);">📝 Cook Registration</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+          <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your full name"/></div>
+          <div class="form-group"><label>Phone</label><input type="tel" placeholder="01712-XXXXXX"/></div>
+        </div>
+        <div class="form-group"><label>Area / Thana</label><input type="text" placeholder="e.g. Dhanmondi, Dhaka"/></div>
+        <div class="form-group"><label>Cooking Specialty</label><input type="text" placeholder="e.g. Biryani, Hilsa, Khichuri, Sweets"/></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+          <div class="form-group"><label>Daily Capacity</label>
+            <select><option>5–10 meals</option><option>10–20 meals</option><option>20–30 meals</option><option>30+ meals</option></select>
+          </div>
+          <div class="form-group"><label>Experience</label>
+            <select><option>Home cook (family)</option><option>1–3 years selling</option><option>3+ years selling</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Upload NID Photo</label><input type="file" accept="image/*"/></div>
+        <div class="form-group"><label>Upload Kitchen Photo (3 required)</label><input type="file" accept="image/*" multiple/></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:1rem;font-size:.95rem;border-radius:12px;" onclick="showToast('✅ Registration submitted! We will call you within 24 hours.')">
+          Register as Cook 👩‍🍳
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART FAB -->
+<div class="cart-fab" onclick="toggleCart()">
+  🛒
+  <div class="cart-fab-count" id="cart-count">0</div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-head">
+    <h3>🛒 Your Order</h3>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cart-body">
+    <div class="cart-empty"><div class="cart-empty-ico">🍽️</div><p>Your cart is empty</p><p style="font-size:.8rem;margin-top:.3rem;">Add some delicious food!</p></div>
+  </div>
+  <div class="cart-foot" id="cart-foot" style="display:none;">
+    <div class="cart-foot-rows" id="cart-foot-rows"></div>
+    <div class="cart-foot-total" id="cart-foot-total"></div>
+    <button class="btn btn-primary" onclick="goCheckout()">Checkout →</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:.5rem;">🍲 GorerKhana</div>
+        <p>Bangladesh's first home-cooked food marketplace. Connecting real home cooks with food lovers since 2025.</p>
+        <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap;">
+          <span class="badge badge-green" style="background:rgba(82,183,136,.2);color:#52B788;">✅ 1,240+ Cooks</span>
+          <span class="badge badge-orange" style="background:rgba(244,162,40,.2);color:var(--orange);">⭐ 4.9 Rating</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Order Food</h4>
+        <a href="#" onclick="showPage('home');return false;">Browse Cooks</a>
+        <a href="#" onclick="showPage('home');return false;">Today's Menu</a>
+        <a href="#" onclick="showPage('donate');return false;">Donate Food</a>
+        <a href="#">Tiffin Pass</a>
+        <a href="#">Group Order</a>
+      </div>
+      <div class="footer-col">
+        <h4>For Cooks</h4>
+        <a href="#" onclick="showPage('cook-register');return false;">Register as Cook</a>
+        <a href="#">Cook Dashboard</a>
+        <a href="#">Cook Guidelines</a>
+        <a href="#">Success Stories</a>
+        <a href="#">Earn More Tips</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Blog</a>
+        <a href="#">Careers</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 GorerKhana — গরের খানা | Made with ❤️ for Bangladesh</span>
+      <div class="payment-logos">
+        <span class="pay-logo">bKash</span>
+        <span class="pay-logo">Nagad</span>
+        <span class="pay-logo">Rocket</span>
+        <span class="pay-logo">VISA</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── DATA ──
+const cooks=[
+  {id:1,name:'Fatema Begum',loc:'Dhanmondi, Dhaka',spec:'🐟 Hilsa & Traditional Bengali',rating:4.9,orders:320,donated:45,emoji:'👩‍🍳',tier:'Master Cook',available:true,
+   menu:[
+    {n:'Khichuri + Fried Egg',p:80,e:'🥘',d:'Soft khichuri with crispy fried egg',tags:['Halal','Vegetarian-opt']},
+    {n:'Ilish Bhuna (Hilsa Curry)',p:150,e:'🐟',d:'Traditional slow-cooked hilsa in mustard',tags:['Halal','Spicy']},
+    {n:'Dal + Bhaat + Sabzi',p:65,e:'🍽️',d:'Mixed dal, steamed rice, seasonal vegetables',tags:['Halal','Healthy']},
+    {n:'Chicken Curry with Rice',p:110,e:'🍛',d:'Home-style chicken curry, tender and aromatic',tags:['Halal']},
+   ],
+   reviews:[
+    {name:'Karim Ahmed',text:'Exactly like my mother\'s cooking! The hilsa was outstanding.',stars:5,order:'Ilish Bhuna',photo:'🍽️'},
+    {name:'Sadia Islam',text:'Best khichuri I\'ve had outside my home. Will order weekly!',stars:5,order:'Khichuri + Egg',photo:'🥘'},
+    {name:'Tanvir Hasan',text:'Fresh, affordable and delivered on time. Highly recommend.',stars:4,order:'Dal + Bhaat',photo:null},
+   ]
+  },
+  {id:2,name:'Rahela Khatun',loc:'Motijheel, Dhaka',spec:'🫕 Biryani & Mughlai Specialist',rating:4.8,orders:215,donated:30,emoji:'👩‍🍳',tier:'Master Cook',available:true,
+   menu:[
+    {n:'Chicken Biryani',p:130,e:'🫕',d:'Aromatic basmati rice with tender chicken',tags:['Halal']},
+    {n:'Beef Kala Bhuna',p:165,e:'🥩',d:'Slow-cooked beef curry — Chittagong style',tags:['Halal','Spicy']},
+    {n:'Vegetable Pulao',p:90,e:'🌾',d:'Fragrant rice with mixed seasonal vegetables',tags:['Halal','Vegetarian']},
+   ],
+   reviews:[
+    {name:'Nadia Rahman',text:'The biryani is unbelievably good. Better than any restaurant!',stars:5,order:'Chicken Biryani',photo:'🫕'},
+    {name:'Farhan Ali',text:'Kala bhuna was perfectly cooked. Very authentic Chittagong taste.',stars:5,order:'Beef Kala Bhuna',photo:'🥩'},
+   ]
+  },
+  {id:3,name:'Rina Apa',loc:'Gulshan, Dhaka',spec:'🥗 Healthy & Light Meals',rating:4.7,orders:180,donated:20,emoji:'👩‍🍳',tier:'Trusted Cook',available:true,
+   menu:[
+    {n:'Dal Bhat Combo',p:70,e:'🍽️',d:'Dal, rice, fish fry, salad',tags:['Halal','Healthy']},
+    {n:'Grilled Fish Set',p:120,e:'🐠',d:'Fresh grilled fish with rice and vegetables',tags:['Halal','Healthy','Low-cal']},
+    {n:'Vegetable Salad Bowl',p:55,e:'🥗',d:'Fresh seasonal vegetables with lemon dressing',tags:['Vegetarian','Healthy']},
+   ],
+   reviews:[
+    {name:'Mim Akter',text:'Perfect for health-conscious people. Light and fresh every time.',stars:5,order:'Grilled Fish Set',photo:null},
+    {name:'Rifat Hossain',text:'Dal bhat is simple and exactly what I needed. Great value.',stars:4,order:'Dal Bhat Combo',photo:'🍽️'},
+   ]
+  },
+  {id:4,name:'Momtaz Apa',loc:'Mirpur, Dhaka',spec:'🍮 Sweets & Tiffin Expert',rating:4.9,orders:290,donated:55,emoji:'👩‍🍳',tier:'Master Cook',available:false,
+   menu:[
+    {n:'Homemade Pitha Box',p:90,e:'🥮',d:'Assorted traditional Bengali pitha (5 pieces)',tags:['Halal','Traditional']},
+    {n:'Mishti Doi (Sweet Yogurt)',p:55,e:'🍮',d:'Homemade sweet yogurt — Bogura style',tags:['Halal','Sweet']},
+    {n:'Office Tiffin Set',p:95,e:'🥪',d:'Rice, curry, vegetable, salad — balanced meal',tags:['Halal']},
+   ],
+   reviews:[
+    {name:'Priya Sharma',text:'The mishti doi is absolutely heavenly! Never had better.',stars:5,order:'Mishti Doi',photo:'🍮'},
+    {name:'Zahir Uddin',text:'Best homemade pitha. My whole office ordered together!',stars:5,order:'Pitha Box',photo:'🥮'},
+   ]
+  },
+];
+
+const meals=[
+  {n:'Chicken Biryani',cook:'Rahela Khatun',p:130,e:'🫕',cat:'biryani',cid:2,trending:true},
+  {n:'Ilish Bhuna',cook:'Fatema Begum',p:150,e:'🐟',cat:'fish',cid:1,trending:true},
+  {n:'Dal Bhat Set',cook:'Rina Apa',p:70,e:'🍽️',cat:'rice',cid:3,trending:false},
+  {n:'Khichuri + Egg',cook:'Fatema Begum',p:80,e:'🥘',cat:'khichuri',cid:1,trending:true},
+  {n:'Pitha Box',cook:'Momtaz Apa',p:90,e:'🥮',cat:'sweets',cid:4,trending:false},
+  {n:'Beef Kala Bhuna',cook:'Rahela Khatun',p:165,e:'🥩',cat:'beef',cid:2,trending:false},
+  {n:'Mishti Doi',cook:'Momtaz Apa',p:55,e:'🍮',cat:'sweets',cid:4,trending:false},
+  {n:'Office Tiffin Set',cook:'Momtaz Apa',p:95,e:'🥪',cat:'tiffin',cid:4,trending:true},
+  {n:'Chicken Curry',cook:'Fatema Begum',p:110,e:'🍛',cat:'chicken',cid:1,trending:false},
+  {n:'Vegetable Pulao',cook:'Rahela Khatun',p:90,e:'🌾',cat:'veg',cid:2,trending:false},
+  {n:'Grilled Fish Set',cook:'Rina Apa',p:120,e:'🐠',cat:'fish',cid:3,trending:false},
+  {n:'Salad Bowl',cook:'Rina Apa',p:55,e:'🥗',cat:'veg',cid:3,trending:false},
+];
+
+const orgs=[
+  {name:'Al-Amin Madrasa',loc:'Dhanmondi, Dhaka',kids:30,need:'Lunch daily — 12 PM',progress:65,urgent:true},
+  {name:'Salam Orphanage',loc:'Mirpur, Dhaka',kids:50,need:'Dinner every Friday',progress:40,urgent:false},
+  {name:'Noor Yatimkhana',loc:'Mohammadpur, Dhaka',kids:40,need:'Breakfast + Lunch',progress:80,urgent:true},
+  {name:'Rahman Madrasa',loc:'Lalbagh, Dhaka',kids:25,need:'Weekend meals',progress:20,urgent:false},
+];
+
+// ── CART ──
+let cart=[];
+
+function addToCart(n,p,cook,e){
+  const ex=cart.find(i=>i.n===n);
+  if(ex){ex.qty++;}else{cart.push({n,p,cook,e,qty:1});}
+  renderCart();
+  showToast('✅ Added: '+n);
+}
+
+function renderCart(){
+  const count=cart.reduce((s,i)=>s+i.qty,0);
+  const sub=cart.reduce((s,i)=>s+i.p*i.qty,0);
+  document.getElementById('cart-count').textContent=count;
+  const body=document.getElementById('cart-body');
+  const foot=document.getElementById('cart-foot');
+  if(!cart.length){
+    body.innerHTML='<div class="cart-empty"><div class="cart-empty-ico">🍽️</div><p>Your cart is empty</p><p style="font-size:.8rem;margin-top:.3rem;">Add some delicious food!</p></div>';
+    foot.style.display='none';return;
+  }
+  foot.style.display='block';
+  body.innerHTML=cart.map((item,i)=>`
+    <div class="cart-item-row">
+      <div class="ci-emoji">${item.e}</div>
+      <div class="ci-info">
+        <div class="ci-name">${item.n}</div>
+        <div class="ci-cook">${item.cook}</div>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="chgQty(${i},-1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="chgQty(${i},1)">+</button>
+        </div>
+      </div>
+      <div class="ci-right">
+        <div class="ci-price">Tk ${item.p*item.qty}</div>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('cart-foot-rows').innerHTML=`
+    <div class="cart-foot-row"><span>Subtotal</span><span>Tk ${sub}</span></div>
+    <div class="cart-foot-row"><span>Delivery</span><span>Tk 40</span></div>
+  `;
+  document.getElementById('cart-foot-total').innerHTML=`<span>Total</span><span>Tk ${sub+40}</span>`;
+}
+
+function chgQty(i,d){
+  cart[i].qty+=d;
+  if(cart[i].qty<=0)cart.splice(i,1);
+  renderCart();
+}
+
+function toggleCart(){document.getElementById('cart-drawer').classList.toggle('open');}
+
+function goCheckout(){
+  toggleCart();
+  renderOrderPage();
+  showPage('order');
+}
+
+function renderOrderPage(){
+  const sub=cart.reduce((s,i)=>s+i.p*i.qty,0);
+  document.getElementById('o-items').innerHTML=cart.map(i=>`
+    <div class="summary-item"><span>${i.e} ${i.n} × ${i.qty}</span><span style="font-weight:800;">Tk ${i.p*i.qty}</span></div>
+  `).join('');
+  document.getElementById('o-totals').innerHTML=`
+    <div class="summary-row"><span>Subtotal</span><span>Tk ${sub}</span></div>
+    <div class="summary-row"><span>Delivery fee</span><span>Tk 40</span></div>
+    <div class="summary-total"><span>Total</span><span style="color:var(--orange);">Tk ${sub+40}</span></div>
+  `;
+}
+
+function placeOrder(){
+  const n=document.getElementById('o-name').value;
+  const ph=document.getElementById('o-phone').value;
+  const ad=document.getElementById('o-addr').value;
+  if(!n||!ph||!ad){showToast('⚠️ Please fill in all required fields');return;}
+  const donated=document.getElementById('donate-check').checked;
+  cart=[];renderCart();
+  showPage('success');
+  if(donated)showToast('🤲 +1 meal donated! JazakAllah Khair 💚');
+}
+
+function selPay(el){
+  document.querySelectorAll('.pay-opt').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+// ── PAGES ──
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showCook(id){
+  const c=cooks.find(x=>x.id===id);
+  if(!c)return;
+  document.getElementById('p-ava').textContent=c.emoji;
+  document.getElementById('p-name').textContent=c.name;
+  document.getElementById('p-loc').textContent='📍 '+c.loc;
+  document.getElementById('p-spec').textContent=c.spec;
+  document.getElementById('p-orders').textContent=c.orders+'+';
+  document.getElementById('p-rating').textContent=c.rating+' ⭐';
+  document.getElementById('p-donated').textContent=c.donated;
+  const tierColors={
+    'Master Cook':'badge-gold',
+    'Trusted Cook':'badge-orange',
+    'Registered Cook':'badge-blue'
+  };
+  document.getElementById('p-badges').innerHTML=`
+    <span class="badge ${tierColors[c.tier]||'badge-blue'}">🏅 ${c.tier}</span>
+    <span class="badge badge-green">✅ NID Verified</span>
+    <span class="badge badge-green">🍳 Kitchen Inspected</span>
+    ${c.available?'<span class="badge badge-green">🟢 Open Now</span>':'<span class="badge badge-red">🔴 Closed</span>'}
+  `;
+  document.getElementById('p-avail').textContent=c.available?'✅ Accepting Orders':'❌ Currently Closed';
+  document.getElementById('p-avail').className='badge '+(c.available?'badge-green':'badge-red');
+
+  document.getElementById('p-menu').innerHTML=c.menu.map(m=>`
+    <div class="menu-item">
+      <div class="menu-emoji">${m.e}</div>
+      <div class="menu-info">
+        <div class="menu-name">${m.n}</div>
+        <div class="menu-desc">${m.d}</div>
+        <div class="menu-tags">${m.tags.map(t=>`<span class="badge badge-green" style="font-size:.68rem;">${t}</span>`).join('')}</div>
+      </div>
+      <div class="menu-right">
+        <span class="menu-price">Tk ${m.p}</span>
+        <button class="btn btn-primary btn-sm" onclick="addToCart('${m.n}',${m.p},'${c.name}','${m.e}')">+ Add</button>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('p-reviews').innerHTML=c.reviews.map(r=>`
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer">
+          <div class="reviewer-ava">${r.name[0]}</div>
+          <div>
+            <div class="reviewer-name">${r.name}</div>
+            <div class="reviewer-date">Ordered: ${r.order}</div>
+          </div>
+        </div>
+        <div class="stars">${'⭐'.repeat(r.stars)}</div>
+      </div>
+      <div class="review-text">"${r.text}"</div>
+      ${r.photo?`<div class="review-photo"><span>${r.photo}</span></div>`:''}
+    </div>
+  `).join('');
+
+  showPage('profile');
+}
+
+// ── RENDER ──
+function renderCooks(){
+  document.getElementById('cook-grid').innerHTML=cooks.map(c=>`
+    <div class="cook-card" onclick="showCook(${c.id})">
+      <div class="cook-card-img">
+        ${c.emoji}
+        <div class="cook-card-badge"><span class="badge badge-gold">🏅 ${c.tier}</span></div>
+        ${c.available?'<div class="cook-available">Open Now</div>':'<div class="cook-available" style="background:#fce4e4;color:var(--red);">Closed</div>'}
+      </div>
+      <div class="cook-card-body">
+        <div class="cook-name">${c.name}</div>
+        <div class="cook-location">📍 ${c.loc}</div>
+        <div class="cook-specialty">${c.spec}</div>
+        <div class="cook-meta">
+          <div>
+            <div class="cook-rating">⭐ ${c.rating} <span class="cook-orders">(${c.orders}+ orders)</span></div>
+            <div style="font-size:.72rem;color:var(--green);margin-top:.2rem;">🤲 Donated ${c.donated} meals</div>
+          </div>
+          <div class="cook-price">from Tk 60</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderMeals(list){
+  document.getElementById('meal-grid').innerHTML=list.map(m=>`
+    <div class="meal-card">
+      <div class="meal-img">
+        ${m.e}
+        ${m.trending?'<div class="meal-trending">🔥 Trending</div>':''}
+      </div>
+      <div class="meal-body">
+        <div class="meal-name">${m.n}</div>
+        <div class="meal-cook" onclick="showCook(${m.cid});event.stopPropagation();" style="cursor:pointer;">👩‍🍳 ${m.cook}</div>
+        <div class="meal-footer">
+          <span class="meal-price">Tk ${m.p}</span>
+          <button class="meal-add" onclick="addToCart('${m.n}',${m.p},'${m.cook}','${m.e}')">+</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderDonations(){
+  document.getElementById('donate-grid').innerHTML=orgs.map(o=>`
+    <div class="donate-card">
+      <div class="donate-card-header">
+        <h3>🏫 ${o.name}</h3>
+        ${o.urgent?'<span class="badge badge-red">🔴 Urgent</span>':'<span class="badge badge-blue">Needed</span>'}
+      </div>
+      <div class="loc">📍 ${o.loc}</div>
+      <span class="need">📋 ${o.need}</span>
+      <div class="kids">👦 ${o.kids} children need food</div>
+      <div class="donate-progress"><div class="donate-progress-fill" style="width:${o.progress}%"></div></div>
+      <div class="donate-progress-lbl">${o.progress}% of this week's meals funded</div>
+      <button class="btn btn-green btn-sm" style="width:100%;justify-content:center;padding:.65rem;" onclick="showToast('🤲 Connecting you with ${o.name}...')">
+        Donate to Them 🤲
+      </button>
+    </div>
+  `).join('');
+}
+
+// ── FILTER ──
+function filterCat(cat,el){
+  document.querySelectorAll('.cat-item').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderMeals(cat==='all'?meals:meals.filter(m=>m.cat===cat));
+}
+
+function filterMeals(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  renderMeals(q?meals.filter(m=>m.n.toLowerCase().includes(q)||m.cook.toLowerCase().includes(q)):meals);
+}
+
+function toggleDonateForm(){
+  const el=document.getElementById('donate-form-wrap');
+  el.style.display=el.style.display==='none'?'block':'none';
+}
+
+// ── TOAST ──
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ── ANIMATED COUNTER ──
+function animateCounter(){
+  const el=document.getElementById('cnt-meals');
+  let n=14800;
+  const interval=setInterval(()=>{
+    n+=Math.floor(Math.random()*3);
+    el.textContent=n.toLocaleString();
+    if(n>=14900)clearInterval(interval);
+  },200);
+}
+
+// ── INIT ──
+renderCooks();
+renderMeals(meals);
+renderDonations();
+animateCounter();
+</script>
+</body>
+</html>
